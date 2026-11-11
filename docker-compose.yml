@@ -1,0 +1,37 @@
+# =============================================================================
+# Docker Compose para Desarrollo y Despliegue General - TCU UTN Guanacaste
+# =============================================================================
+
+services:
+  tcu-utn-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: tcu-utn-web:latest
+    container_name: tcu-utn-web
+    restart: unless-stopped
+    ports:
+      - "${PORT:-8080}:80"
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "http://localhost/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 256M
+        reservations:
+          cpus: "0.10"
+          memory: 64M
+    networks:
+      - tcu-network
+
+networks:
+  tcu-network:
+    name: tcu-network
+    driver: bridge

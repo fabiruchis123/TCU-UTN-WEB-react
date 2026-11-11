@@ -1,0 +1,203 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-image: url("/images/background-two.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+
+
+.main-content {
+    padding: 1.5rem 0.5rem;
+    background-color: transparent;
+    width: 100%;
+}
+
+.card-custom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-bottom: 20px;
+    height: 100%;
+}
+/* .card-custom1{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 20px;
+    height: 50%;
+}
+ */
+.card-custom1{
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    width: 90%;
+}
+
+h1.section-title {
+    color: #234175;
+    text-align: center;
+    margin: 1.5rem 0 1.25rem;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+}
+
+h2.section-title {
+    color: #234175;
+    margin-bottom: 15px;
+}
+
+.icon-box {
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+}
+
+.icon-box img {
+    width: 100%;
+    height: auto;
+    max-height: 50px;
+    object-fit: contain;
+}
+
+.icon-box p {
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.intro-text {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+
+.toolbox-section {
+    margin-top: 40px;
+}
+
+.formularios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.formulario-item {
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    background-color: white;
+}
+
+.formulario-item p {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.formulario-item img {
+    width: 40px;
+    height: auto;
+}
+
+.large-icon {
+    width: 80px;
+    margin: 10px auto;
+    display: block;
+}
+.card-formulario {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+    height: 100%;
+  }
+  
+  .card-formulario:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .formulario-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+  }
+  
+  .card-title {
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  
+  .card-text {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .btn-dark {
+    background-color: #012169;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-dark:hover {
+    background-color: #234175;
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 700;
+    color: #333;
+  }
+  
+  /* Ajustes responsivos */
+  @media (max-width: 768px) {
+    .col-md-4 {
+      margin-bottom: 20px;
+    }
+  }
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+    .col-md-6 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .survey-icon-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+}

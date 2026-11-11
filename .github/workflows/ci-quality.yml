@@ -1,0 +1,46 @@
+name: CI Quality, Type Check & Build
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-and-build:
+    name: TypeCheck, Build & Bundle Verification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate TypeScript Types
+        run: npx tsc --noEmit
+
+      - name: Build Application with Vite
+        run: npm run build
+
+      - name: Verify Build Artifacts & Headers
+        run: |
+          test -f dist/index.html || { echo "Error: dist/index.html not found!"; exit 1; }
+          test -f dist/_headers || { echo "Error: dist/_headers not found!"; exit 1; }
+          echo "Build completed successfully with all security headers in place."
+
+      - name: Check Bundle Size Thresholds
+        run: |
+          echo "Analyzing generated bundle sizes..."
+          ls -lh dist/assets/

@@ -1,0 +1,50 @@
+# =============================================================================
+# Docker Compose para Servidores de Producción - TCU UTN Guanacaste
+# Configuración blindada: logging rotativo, límites estrictos y red aislada
+# =============================================================================
+
+services:
+  tcu-utn-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: tcu-utn-web:prod
+    container_name: tcu-utn-web-prod
+    restart: unless-stopped
+    ports:
+      # Puerto expuesto en el host (predeterminado 8080 o definido vía .env)
+      - "${HOST_PORT:-8080}:80"
+    environment:
+      - NODE_ENV=production
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "http://localhost/healthz"]
+      interval: 20s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 256M
+        reservations:
+          cpus: "0.10"
+          memory: 64M
+    networks:
+      - tcu-prod-network
+      # Si utilizas un Reverse Proxy global (ej. NPM, Traefik), puedes descomentar:
+      # - proxy-network
+
+networks:
+  tcu-prod-network:
+    name: tcu-prod-network
+    driver: bridge
+  # proxy-network:
+  #   external: true

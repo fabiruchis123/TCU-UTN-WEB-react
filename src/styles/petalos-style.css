@@ -1,0 +1,49 @@
+/* El contenedor se posiciona fijo a la ventana, y se extiende al alto del documento */
+#leaf-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* Las hojas se animan verticalmente hacia abajo */
+.leaf {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  animation: fall 10s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(250vh) rotate(560deg); /* Caen más allá de la pantalla sin afectar scroll */
+    opacity: 0;
+  }
+}
+
+body.pagina-construccion .leaf {
+  animation: fall-construccion 10s linear infinite;
+}
+
+@keyframes fall-construccion {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(150vh) rotate(560deg);
+    opacity: 0;
+  }
+}
+
+
+

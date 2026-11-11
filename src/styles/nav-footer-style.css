@@ -1,0 +1,817 @@
+
+
+:root {
+    --navbar-height: 80px;
+    --navbar-bg: #012969;
+    --navbar-hover: #234175;
+    --accent-green: #47c73b;
+}
+
+@media (max-width: 980px) {
+    :root {
+        --navbar-height: 70px;
+    }
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: var(--navbar-height);
+    background-color: var(--navbar-bg);
+    z-index: 1050;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    display: flex;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    height: 100%;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 1051;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 100%;
+}
+
+#logo-utn {
+    height: 48px;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+}
+
+#logo-tcu {
+    height: 44px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+}
+
+a.logo {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
+li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 15px; /* Añadir padding para dar espacio alrededor del texto */
+    border-radius: 15px; /* Mantener el borde redondeado */
+    transition: color 300ms ease, background-color 300ms ease, opacity 300ms ease, transform 300ms ease; /* Transiciones específicas */
+    background-color: transparent; /* Fondo transparente por defecto */
+}
+
+li a:hover {
+    opacity: 1; /* Mantener la opacidad al 100% */
+    color: #ffffff; /* Color del texto al pasar el mouse */
+    background-color: #234175; /* Color de fondo más armonioso */
+    transform: scale(1.05); /* Efecto de escala */
+}
+
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    gap: 6px;
+}
+
+.nav-list li {
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    position: relative;
+}
+
+.mobile-menu {
+    display: none;
+    cursor: pointer;
+}
+
+.mobile-menu div {
+    width: 32px;
+    height: 2px;
+    background: #fff;
+    margin: 5px;
+    transition: 0.3s;
+}
+
+.nav-list.active {
+    transform: translateX(0);
+    height: auto;
+    background-color: #012969;
+}
+
+/* Estilo para el submenú */
+.nav-list .sub-menu {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    background-color: #012969;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    list-style: none;
+    padding: 6px;
+    margin: 0;
+    min-width: 210px;
+    top: calc(100% + 4px);
+    left: 0;
+    text-align: left;
+    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+    transform: translateY(6px);
+    z-index: 1060;
+}
+
+/* Estilo para los elementos de la lista del submenú */
+.nav-list .sub-menu li {
+    margin: 0;
+    width: 100%;
+}
+
+/* Estilo para los enlaces del submenú */
+.nav-list .sub-menu li a {
+    color: white;
+    padding: 10px 14px;
+    text-decoration: none;
+    background-color: transparent;
+    font-size: 14px;
+    border-radius: 8px;
+    border-bottom: none;
+    text-align: left; 
+    width: 100%; 
+    display: block; 
+    box-sizing: border-box;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Mostrar el submenú al pasar el ratón sobre el elemento principal */
+.nav-list li:hover .sub-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Cambiar el color de fondo al pasar el ratón sobre los enlaces del submenú */
+.nav-list .sub-menu li a:hover {
+    background-color: #234175;
+    color: #47c73b;
+    transform: translateX(4px);
+}
+
+
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+
+@media (max-width: 980px) {
+    #logo-utn {
+        height: 38px;
+        width: auto;
+    }
+
+    #logo-tcu {
+        height: 34px;
+        width: auto;
+    }
+
+    .mobile-menu {
+        display: block;
+        z-index: 1056;
+    }
+
+    .nav-list {
+        position: fixed;
+        top: var(--navbar-height);
+        right: 0;
+        width: min(320px, 85vw);
+        height: calc(100vh - var(--navbar-height));
+        background-color: #012969;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1.5rem 1rem;
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -4px 0 25px rgba(0, 0, 0, 0.45);
+        overflow-y: auto;
+        gap: 8px;
+        z-index: 1055;
+    }
+
+    .nav-list.active {
+        transform: translateX(0);
+    }
+
+    .nav-list li {
+        width: 100%;
+        justify-content: flex-start;
+        font-size: 16px;
+    }
+
+    .nav-list li a {
+        width: 100%;
+        display: block;
+        padding: 10px 14px;
+        font-size: 15px;
+    }
+
+    .nav-list .sub-menu {
+        position: static;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        width: 100%;
+        background-color: #012052;
+        box-shadow: none;
+        margin-top: 6px;
+        padding: 6px;
+        border-radius: 8px;
+    }
+
+    .nav-list .sub-menu li a {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
+
+/* ============================================================ */
+/* 🌿 FOOTER INSTITUCIONAL TCU-102A UTN GUANACASTE (REDISEÑADO)  */
+/* ============================================================ */
+
+.tcu-footer,
+.footer-bottom {
+    position: relative;
+    width: 100%;
+    margin-top: 3.5rem;
+    background: linear-gradient(180deg, #011638 0%, #012255 35%, #012969 70%, #011638 100%);
+    color: #f8fafc;
+    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.35);
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+    overflow: hidden;
+    display: block !important;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+/* Barra superior de acento con gradiente de naturaleza */
+.tcu-footer-accent-bar {
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #47c73b 0%, #20c997 50%, #47c73b 100%);
+    box-shadow: 0 0 12px rgba(71, 199, 59, 0.4);
+}
+
+.tcu-footer-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 2.25rem;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.tcu-footer-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr 1.15fr 1.1fr;
+    gap: 2.25rem;
+    align-items: start;
+}
+
+/* Columna 1: Identidad Institucional */
+.tcu-footer-brand-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.tcu-footer-logos {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 0.25rem;
+}
+
+.tcu-footer-logo {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+    transition: transform 0.25s ease;
+}
+
+.tcu-footer-logo:hover {
+    transform: scale(1.04);
+}
+
+.tcu-logo-utn {
+    max-width: 130px;
+}
+
+.tcu-logo-tcu {
+    max-width: 140px;
+}
+
+.tcu-footer-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    padding: 5px 12px;
+    background: rgba(71, 199, 59, 0.15);
+    border: 1px solid rgba(71, 199, 59, 0.45);
+    border-radius: 999px;
+    color: #47c73b;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.tcu-footer-description {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+}
+
+.tcu-footer-tagline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.tcu-footer-tagline .text-accent {
+    color: #47c73b;
+}
+
+/* Encabezados de Columna */
+.tcu-footer-heading {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 1.25rem 0;
+    position: relative;
+    padding-bottom: 8px;
+    letter-spacing: 0.3px;
+}
+
+.tcu-footer-heading::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 28px;
+    height: 2.5px;
+    background: #47c73b;
+    border-radius: 2px;
+}
+
+/* Columna 2: Enlaces Rápidos */
+.tcu-footer-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.tcu-footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(255, 255, 255, 0.82);
+    text-decoration: none;
+    font-size: 0.88rem;
+    padding: 3px 0;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tcu-footer-link svg {
+    color: #47c73b;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.tcu-footer-link:hover {
+    color: #ffffff;
+    transform: translateX(4px);
+}
+
+.tcu-footer-link:hover svg {
+    transform: translateX(2px);
+}
+
+.tcu-footer-link:focus-visible {
+    outline: 2px solid #47c73b;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Columna 3: Contacto y Atención */
+.tcu-footer-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.95rem;
+}
+
+.tcu-footer-contact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.86rem;
+}
+
+.tcu-footer-icon {
+    color: #47c73b;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.tcu-contact-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.tcu-contact-label {
+    display: block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 600;
+}
+
+.tcu-footer-contact-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    word-break: break-word;
+}
+
+.tcu-footer-contact-link:hover {
+    color: #47c73b;
+    text-decoration: underline;
+}
+
+.tcu-contact-text {
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.86rem;
+    line-height: 1.4;
+}
+
+/* Columna 4: Geolocalización */
+.tcu-footer-map-card {
+    position: relative;
+    width: 100%;
+    height: 165px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: #011638;
+}
+
+.tcu-footer-iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+.tcu-footer-map-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px 12px;
+    min-height: 42px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    font-size: 0.84rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tcu-footer-map-action:hover {
+    background: #47c73b;
+    color: #011638;
+    border-color: #47c73b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(71, 199, 59, 0.35);
+}
+
+.tcu-footer-map-action:active {
+    transform: translateY(0);
+}
+
+.tcu-footer-map-action:focus-visible {
+    outline: 3px solid #47c73b;
+    outline-offset: 2px;
+}
+
+/* Barra de Copyright */
+.tcu-footer-copyright-bar {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1.15rem 1.5rem;
+}
+
+.tcu-footer-copyright-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.tcu-copyright-text {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
+}
+
+.tcu-copyright-text strong {
+    color: #ffffff;
+}
+
+.tcu-legal-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.tcu-legal-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: rgba(255, 255, 255, 0.78);
+    text-decoration: none;
+    font-size: 0.82rem;
+    transition: color 0.2s ease;
+}
+
+.tcu-legal-link:hover {
+    color: #47c73b;
+    text-decoration: underline;
+}
+
+.tcu-legal-sep {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+/* Breakpoints responsivos para Footer */
+@media (max-width: 1120px) {
+    .tcu-footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.25rem 2rem;
+    }
+}
+
+@media (max-width: 680px) {
+    .tcu-footer,
+    .footer-bottom {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+
+    .tcu-footer-container {
+        padding: 2.25rem 1.25rem 1.75rem;
+    }
+
+    .tcu-footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .tcu-footer-copyright-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .tcu-legal-links {
+        justify-content: center;
+        gap: 8px;
+    }
+}
+
+/* ============================================================ */
+/* 🎯 SISTEMA UNIFICADO DE BOTONES Y MICRO-INTERACCIONES (WCAG 2.1 AA) */
+/* ============================================================ */
+
+/* Estandarización de área táctil mínima (44x44px), ergonomía y display */
+.btn,
+.descargar-btn,
+.btn-participar,
+.btn-tcu-primary,
+.btn-secondary-tcu,
+.btn-details,
+.btn-external-link,
+.btn-warning,
+.btn-enviar,
+.btn-dark,
+.btn-sigaru-primary,
+.btn-sigaru-outline,
+.btn-download-file,
+.gis-survey-btn,
+.survey-btn,
+.survey-qr-btn,
+.carousel-caption .btn,
+.carousel-caption a.btn,
+button.btn-primary,
+button.btn-secondary,
+button.btn-success,
+button.btn-outline-primary,
+button.btn-outline-secondary,
+.modal-footer .btn {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    vertical-align: middle;
+}
+
+/* Micro-interacción: Elevación en hover */
+.btn:hover,
+.descargar-btn:hover,
+.btn-participar:hover,
+.btn-tcu-primary:hover,
+.btn-secondary-tcu:hover,
+.btn-details:hover,
+.btn-external-link:hover,
+.btn-warning:hover,
+.btn-enviar:hover,
+.btn-dark:hover,
+.btn-sigaru-primary:hover,
+.btn-sigaru-outline:hover,
+.btn-download-file:hover,
+.gis-survey-btn:hover,
+.survey-btn:hover,
+.survey-qr-btn:hover,
+.carousel-caption .btn:hover,
+button.btn-primary:hover,
+button.btn-secondary:hover,
+button.btn-success:hover,
+button.btn-outline-primary:hover,
+button.btn-outline-secondary:hover,
+.modal-footer .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+/* Micro-interacción: Feedback de presión activa (tap/click) */
+.btn:active,
+.descargar-btn:active,
+.btn-participar:active,
+.btn-tcu-primary:active,
+.btn-secondary-tcu:active,
+.btn-details:active,
+.btn-external-link:active,
+.btn-warning:active,
+.btn-enviar:active,
+.btn-dark:active,
+.btn-sigaru-primary:active,
+.btn-sigaru-outline:active,
+.btn-download-file:active,
+.gis-survey-btn:active,
+.survey-btn:active,
+.survey-qr-btn:active,
+.carousel-caption .btn:active,
+button.btn-primary:active,
+button.btn-secondary:active,
+button.btn-success:active,
+button.btn-outline-primary:active,
+button.btn-outline-secondary:active,
+.modal-footer .btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* Accesibilidad de foco visible (WCAG 2.1 AA) */
+.btn:focus-visible,
+.descargar-btn:focus-visible,
+.btn-participar:focus-visible,
+.btn-tcu-primary:focus-visible,
+.btn-secondary-tcu:focus-visible,
+.btn-details:focus-visible,
+.btn-external-link:focus-visible,
+.btn-warning:focus-visible,
+.btn-enviar:focus-visible,
+.btn-dark:focus-visible,
+.btn-sigaru-primary:focus-visible,
+.btn-sigaru-outline:focus-visible,
+.btn-download-file:focus-visible,
+.gis-survey-btn:focus-visible,
+.survey-btn:focus-visible,
+.survey-qr-btn:focus-visible,
+.carousel-caption .btn:focus-visible,
+button:focus-visible,
+a.btn:focus-visible,
+.tcu-footer-map-action:focus-visible,
+.tcu-footer-link:focus-visible {
+    outline: 3px solid #47c73b !important;
+    outline-offset: 2px !important;
+}
+
+/* Alineación de iconografía interna en botones */
+.btn svg,
+.btn i,
+.btn img,
+.btn-tcu-primary svg,
+.btn-secondary-tcu svg,
+.descargar-btn svg,
+.btn-participar svg,
+.btn-sigaru-primary svg,
+.btn-sigaru-outline svg,
+.btn-download-file svg,
+.gis-survey-btn svg,
+.survey-btn svg,
+.survey-qr-btn svg {
+    flex-shrink: 0;
+    vertical-align: middle;
+    transition: transform 0.2s ease;
+}
+
+/* Botón QR / Móvil de Survey123 (Kit del Estudiante) */
+.survey-qr-btn {
+    background: #eff6ff !important;
+    color: #1d4ed8 !important;
+    border: 1px solid #bfdbfe !important;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    width: 100%;
+}
+
+.survey-qr-btn:hover {
+    background: #dbeafe !important;
+    color: #1e40af !important;
+    border-color: #93c5fd !important;
+}
+
+

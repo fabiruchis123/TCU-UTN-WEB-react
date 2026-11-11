@@ -1,0 +1,32 @@
+# Dependencias y compilación local
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist
+dist-ssr
+*.local
+
+# Control de versiones y herramientas de desarrollo
+.git
+.github
+.gitignore
+.dockerignore
+.vscode
+.idea
+*.swp
+*.swo
+
+# Logs y variables de entorno
+*.log
+.env
+.env*.local
+
+# Archivos de soporte y documentación no requeridos en la imagen
+deploy.sh
+deploy.ps1
+DOCKER_DEPLOYMENT.md
+skills
+tcu-utn-web
+README.md
